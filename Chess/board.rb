@@ -3,18 +3,28 @@ require_relative "piece"
 class Board 
   
   def initialize
-    @rows = Array.new(8) { Array.new }
+    @rows = Array.new(8) { Array.new(8) }
     
-    @rows.each_with_index do |row, idx|
-      if [0, 1, 6, 7].include?(idx)
-        row.concat(Array.new(8) { Piece.new(nil, nil, nil) })
-      else 
-        row.concat(Array.new(8))
+    @rows.length.times do |i1|
+      @rows.length.times do |i2| 
+        if [0, 1, 6, 7].include?(i1) 
+          pos = [i1, i2]
+          self[pos] = Piece.new(nil, nil, nil)
+        end
       end 
     end
+    
   end
   
   def move_piece(start_pos, end_pos)
+    if self[start_pos].nil?
+      raise ArgumentError.new("You must select a start position with an existing piece.")
+    end
+    
+    if end_pos.any? { |el| el < 0 || el > 7 } 
+      raise ArgumentError.new("You must select an end position on the board.")
+    end
+    
     self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
   end
   
