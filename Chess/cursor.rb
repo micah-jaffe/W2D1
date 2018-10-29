@@ -87,6 +87,14 @@ class Cursor
   end
 
   def update_pos(diff)
-    puts diff
+    new_pos = []
+    @cursor_pos.each do |i|
+      new_pos[i] = @cursor_pos[i] + diff[i]
+    end
+    
+    if @board.valid_pos?(new_pos)
+      @cursor_pos = new_pos
+    end
+  
   end
 end

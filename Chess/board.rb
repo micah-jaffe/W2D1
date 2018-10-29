@@ -1,6 +1,7 @@
 require_relative "piece"
 
 class Board 
+  attr_reader :rows
   
   def initialize
     @rows = Array.new(8) { Array.new(8) }
@@ -38,6 +39,9 @@ class Board
     @rows[x][y] = val
   end
   
+  def valid_pos?(pos)
+    pos.none? { |el| el < 0 || el > 7 }
+  end
   
 end
 

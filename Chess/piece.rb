@@ -3,6 +3,10 @@ class Piece
     @color = color
     @board = board 
     @pos = pos
-    
   end
+  
+  def to_s
+    "X"
+  end
+  
 end
