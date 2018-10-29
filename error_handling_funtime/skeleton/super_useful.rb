@@ -1,15 +1,21 @@
 # PHASE 2
 def convert_to_int(str)
   Integer(str)
+rescue ArgumentError => e
+  puts "#{e}: Please only use numeric digits."
 end
 
 # PHASE 3
 FRUITS = ["apple", "banana", "orange"]
 
+class CoffeeError < ArgumentError; end
+
 def reaction(maybe_fruit)
   if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
+  elsif maybe_fruit == "coffee"
+    raise CoffeeError.new("That's not the fruit I wanted! Try again.")
+  else
     raise StandardError 
   end 
 end
@@ -20,6 +26,9 @@ def feed_me_a_fruit
   puts "Feed me a fruit! (Enter the name of a fruit:)"
   maybe_fruit = gets.chomp
   reaction(maybe_fruit) 
+rescue CoffeeError => e
+  puts e
+  retry
 end  
 
 # PHASE 4
