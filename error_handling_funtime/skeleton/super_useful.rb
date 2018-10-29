@@ -33,10 +33,19 @@ end
 
 # PHASE 4
 class BestFriend
+  
   def initialize(name, yrs_known, fav_pastime)
     @name = name
     @yrs_known = yrs_known
     @fav_pastime = fav_pastime
+    
+    if @yrs_known < 5 
+      raise ArgumentError.new("You're not a real best friend, you impostor!")
+    end
+    
+    if name.length == 0 || fav_pastime.length == 0
+      raise ArgumentError.new("Give me a real name and a real favorite pastime!")
+    end
   end
 
   def talk_about_friendship
