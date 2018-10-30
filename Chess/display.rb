@@ -12,11 +12,7 @@ class Display
     @board.rows.each_with_index do |array, i|
       array.each_with_index do |square, j|
         if [i, j] == @cursor.cursor_pos
-          if @cursor.selected 
-            print square.to_s.cyan 
-          else
-            print square.to_s.magenta
-          end
+          print (@cursor.selected ? square.to_s.cyan : square.to_s.magenta)
         else
           print square.to_s
         end
