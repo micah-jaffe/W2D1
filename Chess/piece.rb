@@ -6,7 +6,7 @@ class Piece
   end
   
   def to_s
-    "X"
+    "\u2654".encode('utf-8')
   end
   
 end
